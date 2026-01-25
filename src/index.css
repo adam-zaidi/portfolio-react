@@ -1,0 +1,64 @@
+/* Global styles and font faces */
+@font-face {
+  font-family: Terminal;
+  src: url('./assets/fonts/EpsonMxSeriesDmp-ZVRG8.ttf');
+}
+
+@font-face {
+  font-family: Intro;
+  src: url('./assets/fonts/IntroDemoCond-LightCAPS.ttf');
+}
+
+*, html, body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  color: #33ff00;
+  font-family: Terminal;
+  background-color: #1a1a1a;
+}
+
+@keyframes fadeOutAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Mobile styles */
+@media only screen and (orientation: portrait) {
+  html, body {
+    overflow-x: hidden;
+    position: fixed;
+    background-color: #1a1a1a;
+  }
+  html {
+    max-width: 100% !important;
+  }
+  body {
+    width: 100vw !important;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  span {
+    line-height: 8px !important;
+    font-size: 8px !important;
+    letter-spacing: -0.5px !important;
+  }
+}

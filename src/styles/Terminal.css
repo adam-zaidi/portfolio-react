@@ -1,0 +1,461 @@
+/* Import Terminal font */
+@font-face {
+  font-family: Terminal;
+  src: url('../assets/fonts/EpsonMxSeriesDmp-ZVRG8.ttf');
+}
+
+/* Terminal Interface Styles */
+.terminal-wrapper {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #1a1a1a;
+  color: #33ff00;
+  font-family: Terminal, 'Courier New', Courier, monospace;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 0 4px #0fa;
+  position: relative;
+}
+
+/* CRT scanline effect */
+.terminal-wrapper::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* CRT vignette effect */
+.terminal-wrapper::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  pointer-events: none;
+  z-index: 999;
+}
+
+.terminal-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ASCII Art Header */
+.terminal-header {
+  margin-bottom: 20px;
+}
+
+.ascii-art {
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 14px;
+  font-size: 14px;
+  letter-spacing: -0.5px;
+  white-space: pre;
+  text-shadow: 0 0 5px #0fa;
+}
+
+.ascii-art-row {
+  display: flex;
+  gap: 20px;
+}
+
+/* Welcome Message */
+.terminal-welcome {
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+  color: #33ff00;
+}
+
+/* Consistent base font size and line height */
+.terminal-container {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Blank line for spacing */
+.blank-line {
+  font-size: 16px;
+  line-height: 1.5;
+  height: 1.5em;
+}
+
+/* Command Box - Two columns */
+.command-box {
+  margin: 0;
+}
+
+.box-top, .box-bottom {
+  color: #33ff00;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.command-columns {
+  display: flex;
+  gap: 40px;
+  padding-left: 10px;
+}
+
+.command-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.box-row {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Hidden on desktop, shown on mobile */
+.mobile-commands-label {
+  display: none;
+  color: #33ff00;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.cmd-name {
+  color: #FFb000;
+  text-shadow: 0 0 4px #ff8c00;
+}
+
+.cmd-dots {
+  color: #336633;
+  margin: 0 5px;
+  text-shadow: none;
+}
+
+.cmd-desc {
+  color: #33ff00;
+}
+
+/* Terminal Output Area */
+.terminal-output {
+  flex: 1;
+  margin: 10px 0;
+  padding-bottom: 60px; /* Space for sticky input */
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.output-block {
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  line-height: 1.5;
+}
+
+.output-block:last-child {
+  margin-bottom: 10px;
+}
+
+.command-echo {
+  color: #FFb000;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  text-shadow: 0 0 4px #ff8c00;
+}
+
+.output-content {
+  color: #33ff00;
+}
+
+.output-content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.output-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.output-content li {
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.output-content strong {
+  color: #FFb000;
+  font-weight: normal;
+  text-shadow: 0 0 4px #ff8c00;
+}
+
+/* Cyan accent for headers/titles */
+.cyan {
+  color: #00FFFF;
+  text-shadow: 0 0 4px #00CCCC;
+}
+
+a.cyan {
+  color: #00FFFF;
+  text-decoration: none;
+  text-shadow: 0 0 4px #00CCCC;
+}
+
+a.cyan:hover {
+  text-decoration: underline;
+}
+
+.output-content .section-header {
+  color: #00FFFF;
+  text-shadow: 0 0 4px #00CCCC;
+  margin-bottom: 5px;
+}
+
+/* Left border for entry blocks */
+.entry-block {
+  border-left: 2px solid #336633;
+  padding-left: 12px;
+  margin-left: 2px;
+}
+
+/* Expand/collapse link */
+.expand-link {
+  color: #888;
+  text-decoration: none;
+  text-shadow: 0 0 4px #666;
+  cursor: pointer;
+}
+
+.expand-link:hover {
+  color: #aaa;
+  text-shadow: 0 0 4px #888;
+}
+
+.output-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.output-content li {
+  padding: 5px 0;
+}
+
+.output-content a {
+  color: #33ff00;
+  text-decoration: underline;
+}
+
+.output-content a:hover {
+  background-color: #33ff00;
+  color: #282828;
+}
+
+/* Cyan links override (higher specificity) */
+.output-content a.cyan {
+  color: #00FFFF;
+  text-decoration: underline;
+  text-shadow: 0 0 4px #00CCCC;
+}
+
+.output-content a.cyan:hover {
+  color: #282828;
+  background-color: #00FFFF;
+  text-shadow: none;
+}
+
+/* PGP Section */
+.pgp-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pgp-btn {
+  background-color: #282828;
+  color: #33ff00;
+  border: 1px solid #33ff00;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+}
+
+.pgp-btn:hover {
+  background-color: #33ff00;
+  color: #282828;
+}
+
+.copied-msg {
+  color: #FFb000;
+  font-size: 16px;
+  text-shadow: 0 0 4px #ff8c00;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Command Input Area - Sticky at bottom */
+.terminal-input-area {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-top: 1px solid #333;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #1a1a1a;
+  z-index: 100;
+}
+
+.prompt-symbol {
+  color: #33ff00;
+  margin-right: 10px;
+  font-weight: bold;
+  text-shadow: 0 0 2px #0fa;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #33ff00;
+  font-family: Terminal, 'Courier New', Courier, monospace;
+  font-size: 16px;
+  outline: none;
+  caret-color: transparent;
+}
+
+.terminal-input::placeholder {
+  color: #666;
+}
+
+/* Blinking cursor for input */
+.cursor-blink {
+  display: inline-block;
+  width: 10px;
+  height: 18px;
+  background-color: #33ff00;
+  animation: blink 1s step-start infinite;
+  vertical-align: middle;
+  box-shadow: 0 0 6px #0fa;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Hint text */
+.terminal-hint {
+  color: #447744;
+  font-size: 16px;
+  margin: 0;
+  line-height: 1.5;
+  text-shadow:
+    0 0 3px #335533;
+}
+
+/* Error message */
+.error-msg {
+  color: #ff6b6b;
+}
+
+/* Mobile Responsive */
+@media only screen and (max-width: 700px) {
+  .ascii-art {
+    font-size: 6px;
+    line-height: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .ascii-art-row {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* Hide the ASCII box borders on mobile */
+  .box-top, .box-bottom {
+    display: none;
+  }
+
+  /* Display commands inline on mobile */
+  .command-columns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px 15px;
+    padding-left: 0;
+  }
+
+  .command-column {
+    display: contents;
+  }
+
+  .box-row {
+    display: inline;
+  }
+
+  /* Hide descriptions and dots on mobile */
+  .cmd-dots, .cmd-desc {
+    display: none;
+  }
+
+  /* Style command names as inline items */
+  .cmd-name {
+    display: inline;
+    font-size: 14px;
+  }
+
+  .box-row {
+    display: inline;
+    font-size: 14px;
+  }
+
+  /* Show mobile commands label */
+  .mobile-commands-label {
+    display: block;
+    font-size: 14px;
+  }
+
+  .terminal-input {
+    font-size: 16px;
+  }
+
+  /* Adjust entry blocks on mobile */
+  .entry-block {
+    padding-left: 8px;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  .terminal-wrapper {
+    padding: 10px;
+  }
+}
+
