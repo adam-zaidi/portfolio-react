@@ -146,6 +146,18 @@ export const projects = [
     url: 'https://github.com/adam-zaidi/queens-solver',
   },
   {
+    name: 'Jazzle',
+    description: 'Adapted Classicle for jazz standards using the Real Book as a collection of music the player must guess based on sheet music; programmed an algorithm using OpenCV to detect the first six bars of any given sheet music, automating the process of displaying hundreds of different jazz lead sheets',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Python', 'OpenCV'],
+    url: 'https://jazzle.me',
+  },
+  {
+    name: 'Classicle',
+    description: 'Programmed a version of the popular online game Wordle adapted for guessing classical music from sheet music; designed a custom process to automate transcribing sheet music using the Vexflow JavaScript library to render the music',
+    tech: ['HTML', 'CSS', 'JavaScript', 'Vexflow'],
+    url: 'https://classicle.com',
+  },
+  {
     name: 'Combinatorial Puzzle Optimizer',
     description: 'Developed optimization pipelines for generating nonograms by modeling the puzzle as an NP-complete search problem; applied entropy-driven heuristics and constraint propagation to efficiently converge on high-information boards',
     tech: ['JavaScript'],

@@ -37,6 +37,45 @@ function WritingOutput() {
   )
 }
 
+// Component for projects output with expand/collapse
+function ProjectsOutput() {
+  const [showAll, setShowAll] = useState(false)
+  const displayedProjects = showAll ? projects : projects.slice(0, 3)
+  
+  return (
+    <div className="output-content">
+      {displayedProjects.map((project, index) => (
+        <div key={index} className="project-entry">
+          <div className="entry-block">
+            <p>
+              {project.url ? (
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className="cyan">
+                  {project.name}
+                </a>
+              ) : (
+                <span className="cyan">{project.name}</span>
+              )}
+            </p>
+            <p>{project.description}</p>
+            <p><strong>{project.tech.join(' · ')}</strong></p>
+          </div>
+          {index < displayedProjects.length - 1 && <div className="blank-line">&nbsp;</div>}
+        </div>
+      ))}
+      {projects.length > 3 && (
+        <>
+          <div className="blank-line">&nbsp;</div>
+          <p>
+            <a href="#" onClick={(e) => { e.preventDefault(); setShowAll(!showAll); }} className="expand-link">
+              {showAll ? '[ show less ]' : `[ show all ${projects.length} projects ]`}
+            </a>
+          </p>
+        </>
+      )}
+    </div>
+  )
+}
+
 // ASCII art for "ADAM"
 const adamAscii = ` █████╗ ██████╗  █████╗ ███╗   ███╗
 ██╔══██╗██╔══██╗██╔══██╗████╗ ████║
@@ -214,28 +253,7 @@ function Terminal() {
       case 'projects':
         return {
           type: 'projects',
-          content: (
-            <div className="output-content">
-              {projects.map((project, index) => (
-                <div key={index} className="project-entry">
-                  <div className="entry-block">
-                    <p>
-                      {project.url ? (
-                        <a href={project.url} target="_blank" rel="noopener noreferrer" className="cyan">
-                          {project.name}
-                        </a>
-                      ) : (
-                        <span className="cyan">{project.name}</span>
-                      )}
-                    </p>
-                    <p>{project.description}</p>
-                    <p><strong>{project.tech.join(' · ')}</strong></p>
-                  </div>
-                  {index < projects.length - 1 && <div className="blank-line">&nbsp;</div>}
-                </div>
-              ))}
-            </div>
-          )
+          content: <ProjectsOutput />
         }
 
       case 'writing':
@@ -319,7 +337,7 @@ function Terminal() {
 
         {/* Command Box - Two columns */}
         <div className="command-box">
-          <div className="box-top">┌──Available Commands────────────────────────────────────────────────────────────────────┐</div>
+          <div className="box-top">┌──<span className="cyan">Available Commands</span>────────────────────────────────────────────────────────────────────┐</div>
           <div className="mobile-commands-label">Commands:</div>
           <div className="command-columns">
             <div className="command-column">
